@@ -1,11 +1,17 @@
 import requests
 
-try:
-    url = "https://api.chucknorris.io/jokes/random"
-    response = requests.get(url)
+def get_joke():
 
-    data = response.json()
-    print("Vtip:", data["value"])
+    try:
+        response = requests.get("https://official-joke-api.appspot.com/random_joke")
 
-except Exception:
-    print("Chyba pri nacitani API!")
+        data = response.json()
+
+        print(data["setup"])
+        print(data["punchline"])
+
+    except requests.RequestException:
+        print("Chyba při načítání API")
+
+
+get_joke()
